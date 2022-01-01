@@ -28,14 +28,13 @@ public class BishopBlackTest {
     public void wayC1toG5() {
         BishopBlack bb = new BishopBlack(Cell.C1);
         Cell[] rsl = new Cell[]{Cell.D2, Cell.E3, Cell.F4, Cell.G5};
-        Assert.assertThat(Arrays.equals(bb.way(Cell.G5), rsl), is(true));
-        //System.out.println(Arrays.toString(bb.way(Cell.A3)));  [B2, A3]
+        Assert.assertArrayEquals(rsl, bb.way(Cell.G5));
     }
 
     @Test
     public void wayC1toA3() {
         BishopBlack bb = new BishopBlack(Cell.C1);
         Cell[] rsl = new Cell[]{Cell.B2, Cell.A3};
-        Assert.assertThat(Arrays.equals(bb.way(Cell.A3), rsl), is(true));
+        Assert.assertArrayEquals(rsl, bb.way(Cell.A3));
     }
 }

@@ -2,6 +2,8 @@ package ru.job4j.chess;
 
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.firuges.black.BishopBlack;
+
 import java.util.Arrays;
 
 public final class Logic {
@@ -21,6 +23,15 @@ public final class Logic {
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
+
+        for (Cell step : steps) {
+            for (Figure figure: figures) {
+                if (figure != null && figure.position().equals(step)) {
+                    throw new OccupiedCellException("Cell " + step + " is occupied");
+                }
+            }
+        }
+
         return true;
     }
 
@@ -37,5 +48,19 @@ public final class Logic {
             }
         }
         throw new FigureNotFoundException();
+    }
+
+    public static void main(String[] args) {
+        Logic logic = new Logic();
+        BishopBlack bb1 = new BishopBlack(Cell.D4);
+        logic.add(bb1);
+        BishopBlack bb2 = new BishopBlack(Cell.F6);
+        logic.add(bb2);
+        try {
+            logic.free(bb1.way(Cell.A7));
+        } catch (OccupiedCellException ex) {
+            ex.printStackTrace();
+        }
+
     }
 }

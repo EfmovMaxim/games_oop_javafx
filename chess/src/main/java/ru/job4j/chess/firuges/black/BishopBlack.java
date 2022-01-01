@@ -42,12 +42,10 @@ public class BishopBlack implements Figure {
         Cell[] way = new Cell[Math.abs(deltaX)];
 
         int ix = 0;
-        int iy = 0;
 
         while (deltaX != ix * kx) {
             ++ix;
-            ++iy;
-            way[Math.abs(ix) - 1] = Cell.findBy(position().getX() + ix * kx, position.getY() + iy * ky);
+             way[Math.abs(ix) - 1] = Cell.findBy(position().getX() + ix * kx, position.getY() + ix * ky);
         }
 
         return way;
